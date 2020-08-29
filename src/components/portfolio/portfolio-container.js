@@ -1,17 +1,18 @@
 import React ,{Component} from "react";
 
 import PortfolioItem from "./portfolio-items";
-import { data } from "autoprefixer";
+
 
 export default class PortfolioContainer extends Component{
     constructor(){
         super();
         this.state={
             pageTile:'welcome to my portfolio',
+            loading:false,
             data :[
-                {title:'Drip.com', type:'ecommerce'},
-                {title:'No-Colledge.com',type:'social'},
-                {title:'Easy-Checkout.com',type:'ecommerce'},
+                {title:'Drip.com', type:'ecommerce' , slug:'drip'},
+                {title:'No-Colledge.com',type:'social', slug:'nocolledge'},
+                {title:'Easy-Checkout.com',type:'ecommerce',slug:'checkout'},
             ]
             }
             this.Category=this.Category.bind(this);
@@ -26,10 +27,13 @@ export default class PortfolioContainer extends Component{
 
     PortfolioItems(){
         return this.state.data.map(item=>{
-        return <PortfolioItem title={item.title}/>;
+        return <PortfolioItem title={item.title} slug={item.slug}/>;
         });
 }
     render(){
+        if (this.state.loading){
+            return <div>Loading...</div>
+        }
         return(
             <div>
                 {this.state.pageTile}
