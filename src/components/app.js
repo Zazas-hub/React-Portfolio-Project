@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import Auth from "./pages/Auth";
+
 import PortfolioDetail from "./portfolio/PortfolioDetail";
 import Nomatch from "./pages/Nomatch";
 
@@ -25,6 +27,7 @@ export default class App extends Component {
               <Route path="/About-me" component={About} />
               <Route path="/Contact-us" component={Contact} />
               <Route path="/Blog" component={Blog} />
+              <Route path="/Auth" component={Auth} />
               <Route path="/portfolio/:slug" component={PortfolioDetail} />
               <Route component={Nomatch} />
             </Switch>

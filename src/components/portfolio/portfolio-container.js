@@ -62,12 +62,12 @@ export default class PortfolioContainer extends Component {
     }
 
     return (
-      <div>
-        {this.state.pageTile}
-        <div className="portfolio-items-wrapper">{this.PortfolioItems()}</div>
-        <button onClick={() => this.Category("ecommerce")}>ecommerce</button>
-        <button onClick={() => this.Category("social")}>social</button>
-      </div>
+        <div className="portfolio-items-wrapper">
+        <button className="btn" onClick={() => this.Category("ecommerce")}>ecommerce</button>
+        <button className="btn" onClick={() => this.Category("social")}>Social</button>
+        <button className="btn" onClick={() => this.Category("Technology")}>Technology</button>
+        {this.PortfolioItems()}
+        </div>
     );
   }
 }
