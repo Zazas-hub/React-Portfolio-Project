@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import PortfolioItem from "./portfolio-items";
-import { data } from "autoprefixer";
 
 export default class PortfolioContainer extends Component {
   constructor() {

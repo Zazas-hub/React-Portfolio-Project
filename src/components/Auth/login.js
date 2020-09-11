@@ -31,11 +31,12 @@ export default class Login extends Component {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          console.log("you have sucessfully loged in ");
+          this.props.handleSuccesfulAuth();
         } else {
           this.setState({
             errorText: "You forgot your password again ...?",
           });
+          this.props.handleUnsuccesfulAuth();
         }
       })
       .catch((error) => {
@@ -43,6 +44,7 @@ export default class Login extends Component {
         this.setState({
           errorText: "something went wrong with the API",
         });
+        this.props.handleUnsuccesfulAuth();
       });
     event.preventDefault();
   }
