@@ -72,6 +72,7 @@ export default class Login extends Component {
             <button type="submit">Login</button>
           </div>
         </form>
+        
       </div>
     );
   }
