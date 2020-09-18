@@ -69,7 +69,7 @@ export default class App extends Component {
     this.checkLoginStatus();
   }
   authorizedPages(){
-    return [<Route path='/portfolio-mananger' component={PortfolioMananger}/>]
+    return [<Route key='porfolio-mananger' path='/portfolio-mananger' component={PortfolioMananger}/>]
   }
 
   render() {
