@@ -1,6 +1,8 @@
- import React, { Component } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrash, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import NavigationContainer from "./navigation/NavigationContainer";
 import Home from "./pages/Home";
@@ -10,9 +12,9 @@ import Blog from "./pages/Blog";
 import Auth from "./pages/Auth";
 
 import PortfolioDetail from "./portfolio/PortfolioDetail";
-import PortfolioMananger from './pages/portfolio-mananger';
+import PortfolioMananger from "./pages/portfolio-mananger";
 import Nomatch from "./pages/Nomatch";
-
+library.add(faTrash, faSignOutAlt);
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ export default class App extends Component {
     };
     this.handleSuccesfulLogin = this.handleSuccesfulLogin.bind(this);
     this.handleUnsuccesfulLogin = this.handleUnsuccesfulLogin.bind(this);
-    this.handleSuccesfulLogout=this.handleSuccesfulLogout.bind(this);
+    this.handleSuccesfulLogout = this.handleSuccesfulLogout.bind(this);
   }
   handleSuccesfulLogin() {
     this.setState({
@@ -47,16 +49,16 @@ export default class App extends Component {
       .then((response) => {
         const loggedIn = response.data.logged_in;
         const loggedInStatus = this.state.loggedInStatus;
-        console.log('response',response);
-        if (loggedIn && loggedInStatus==='LOGGED_IN'){
+        console.log("response", response);
+        if (loggedIn && loggedInStatus === "LOGGED_IN") {
           return loggedIn;
-        }else if (loggedIn && loggedInStatus==='NOT_LOGGED_IN'){
+        } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
           this.setState({
-            loggedInStatus:"LOGGED_IN"
+            loggedInStatus: "LOGGED_IN",
           });
-        }else if (!loggedIn && loggedInStatus==="LOGGED_IN"){
+        } else if (!loggedIn && loggedInStatus === "LOGGED_IN") {
           this.setState({
-            loggedInStatus:'NOT_LOGGED_IN'
+            loggedInStatus: "NOT_LOGGED_IN",
           });
         }
       })
@@ -68,25 +70,33 @@ export default class App extends Component {
   componentDidMount() {
     this.checkLoginStatus();
   }
-  authorizedPages(){
-    return [<Route key='porfolio-mananger' path='/portfolio-mananger' component={PortfolioMananger}/>]
+  authorizedPages() {
+    return [
+      <Route
+        key="porfolio-mananger"
+        path="/portfolio-mananger"
+        component={PortfolioMananger}
+      />,
+    ];
   }
 
   render() {
     return (
       <div className="container">
         <Router>
-          <NavigationContainer 
-          loggedInStatus={this.state.loggedInStatus}
-          handleSuccesfulLogout={this.handleSuccesfulLogout}
+          <NavigationContainer
+            loggedInStatus={this.state.loggedInStatus}
+            handleSuccesfulLogout={this.handleSuccesfulLogout}
           />
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/About-me" component={About} />
               <Route path="/Contact-us" component={Contact} />
-              <Route path="/Blog" component={Blog}/>
-              {this.state.loggedInStatus==='LOGGED_IN'?this.authorizedPages():null}
+              <Route path="/Blog" component={Blog} />
+              {this.state.loggedInStatus === "LOGGED_IN"
+                ? this.authorizedPages()
+                : null}
               <Route
                 path="/auth"
                 render={(props) => (
