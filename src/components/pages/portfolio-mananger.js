@@ -8,12 +8,25 @@ export default class PortfolioMananger extends Component {
     super();
     this.state = {
       portfolioItems: [],
+      portfolioToEdit: {},
     };
     this.handleSuccesfullFormSubmission = this.handleSuccesfullFormSubmission.bind(
       this
     );
     this.handleFormSubmissionError = this.handleFormSubmissionError.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+    this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
+  }
+  clearPortfolioToEdit() {
+    this.setState({
+      portfolioToEdit: {},
+    });
+  }
+  handleEditClick(portfolioItem) {
+    this.setState({
+      portfolioToEdit: portfolioItem,
+    });
   }
   handleDeleteClick(portfolioItem) {
     axios
@@ -22,12 +35,12 @@ export default class PortfolioMananger extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-     this.setState({
-       portfolioItems:this.state.portfolioItems.filter(item=>{
-         return item.id !== portfolioItem.id;
-       })
-     })
-     return response.data;
+        this.setState({
+          portfolioItems: this.state.portfolioItems.filter((item) => {
+            return item.id !== portfolioItem.id;
+          }),
+        });
+        return response.data;
       })
       .catch((error) => {
         console.log("handleDeleteClick", error);
@@ -68,12 +81,15 @@ export default class PortfolioMananger extends Component {
           <PortfolioForm
             handleFormSubmissionError={this.handleFormSubmissionError}
             handleSuccesfullFormSubmission={this.handleSuccesfullFormSubmission}
+            clearPortfolioToEdit={this.clearPortfolioToEdit}
+            portfolioToEdit={this.state.portfolioToEdit}
           />
         </div>
         <div className="right-column">
           <PortfolioSidebarList
             data={this.state.portfolioItems}
             handleDeleteClick={this.handleDeleteClick}
+            handleEditClick={this.handleEditClick}
           />
         </div>
       </div>

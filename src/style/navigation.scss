@@ -9,14 +9,10 @@
       margin-left: 15px;
       cursor: pointer;
       color: $teal;
-      text-decoration:none;
-
-      transition: 0.5s ease-in-out;
+      transition:0.5s ease-in-out;
 
       &:hover {
-        color: $dark-teal;
-      text-decoration: none;
-
+      color: $dark-teal;
       }
     }
   }
