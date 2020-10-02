@@ -11,5 +11,25 @@
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-gap: 21px;
+
+    .Portfolio-mananger-image-wrapper {
+      img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+      .image-removal-link {
+        a {
+          color: $warning;
+          font-weight: 900;
+          cursor: pointer;
+          display: flex;
+          .portfolio-remove-icon {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
   }
 }
