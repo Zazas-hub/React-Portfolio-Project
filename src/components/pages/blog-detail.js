@@ -16,7 +16,10 @@ export default class BlogDetail extends Component {
         `https://zazas.devcamp.space/portfolio/portfolio_blogs/${this.state.currentId}`
       )
       .then((response) => {
-        console.log("getBlogItem", response);
+        console.log("get blog item ", response);
+        this.setState({
+          blogItem: response.data.portfolio_blog,
+        });
       })
       .catch((error) => {
         console.log("getBlogItem", error);
@@ -26,9 +29,21 @@ export default class BlogDetail extends Component {
     this.getBlogItem();
   }
   render() {
+    const {
+      title,
+      content,
+      blog_status,
+      featured_image_url,
+    } = this.state.blogItem;
     return (
-      <div>
-        <h1>Blog Details</h1>
+      <div className="blog-container">
+        <div className="content-container">
+          <h1>{title}</h1>
+          <div className="feautured-img-wrapper">
+            <img src={featured_image_url} />
+          </div>
+          <div className="content">{content}</div>
+        </div>
       </div>
     );
   }

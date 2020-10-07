@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import axios from "axios";
 import BlogItem from "../blog/blog-item";
+import { faWindowRestore } from "@fortawesome/free-solid-svg-icons";
 
 export default class Blog extends Component {
   constructor() {
@@ -10,6 +11,17 @@ export default class Blog extends Component {
       blogItems: [],
     };
     this.getBlogItems = this.getBlogItems.bind(this);
+    this.activateInfiniteScroll();
+  }
+  activateInfiniteScroll() {
+    window.onscroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 1 ===
+        document.documentElement.offsetHeight
+      ) {
+        console.log("get more posts");
+      }
+    };
   }
   getBlogItems() {
     axios
@@ -25,6 +37,7 @@ export default class Blog extends Component {
         console.log("getBlogItems", error);
       });
   }
+
   componentDidMount() {
     this.getBlogItems();
   }
@@ -32,6 +45,12 @@ export default class Blog extends Component {
     const blogRecords = this.state.blogItems.map((blogItem) => {
       return <BlogItem key={blogItem.id} blogItem={blogItem} />;
     });
-    return <div>{blogRecords}</div>;
+    return (
+      <div className="blog-container">
+        <div className="content-container">
+          <div>{blogRecords}</div>
+        </div>
+      </div>
+    );
   }
 }
