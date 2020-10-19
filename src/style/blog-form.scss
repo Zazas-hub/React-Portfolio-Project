@@ -1,0 +1,17 @@
+.blog-form-wrapper {
+  grid-template-columns: 2fr;
+  padding: 42px;
+  @include base-grid();
+
+  @include input-element();
+  input {
+    margin-bottom: 0px;
+  }
+  .two-column {
+    display: flex;
+    justify-content: space-between;
+  }
+  input {
+    margin-right: 10px;
+  }
+}
