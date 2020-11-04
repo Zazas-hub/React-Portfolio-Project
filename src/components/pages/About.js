@@ -14,10 +14,22 @@ export default function () {
           }}
         />
         <div className="right-column">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem
-          aspernatur ut architecto ducimus quis reprehenderit voluptatibus ullam
-          rem quos similique, dolores exercitationem veritatis. Necessitatibus,
-          libero?
+          <div>
+            <h1>
+              Hi my name is Bran and I like building awesome software !!. I've
+              built diversed cataloge of web applications , from ecommerce to
+              Enterprise . If you are interested, you can view some of my
+              favorite projects in my portfolio on the HOME Page .I look foward
+              to Providing value to you and the world .Thanks
+            </h1>
+          </div>
+          <div className='technical-content'>
+            <h2>
+              The tools I use most frequently include: JAVASCRIPT , NODE.js ,
+              PYTHON with the framework REACT being my stronghold .As well
+              software ; GIT , WINDOWS , SQL ,MONGO DB .
+            </h2>
+          </div>
         </div>
       </div>
     </div>
